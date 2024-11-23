@@ -1,0 +1,32 @@
+W:\DataAnnotation\Projects\Achilles\A-35747_02_LLM\.venv\Lib\site-packages\langchain\llms\__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import Ollama`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+W:\DataAnnotation\Projects\Achilles\A-35747_02_LLM\prompt.py:52: LangChainDeprecationWarning: The class `Ollama` was deprecated in LangChain 0.3.1 and will be removed in 1.0.0. An updated version of the class exists in the :class:`~langchain-ollama package and should be used instead. To use it run `pip install -U :class:`~langchain-ollama` and import as `from :class:`~langchain_ollama import OllamaLLM``.
+  self.ollama_llm = Ollama(base_url=ollama_base_url)
+Traceback (most recent call last):
+  File "W:\DataAnnotation\Projects\Achilles\A-35747_02_LLM\prompt.py", line 112, in <module>
+    result = agent.run(user_input)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "W:\DataAnnotation\Projects\Achilles\A-35747_02_LLM\prompt.py", line 56, in run
+    task_planner = self.create_task_planner_agent()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "W:\DataAnnotation\Projects\Achilles\A-35747_02_LLM\prompt.py", line 72, in create_task_planner_agent
+    return Agent(
+           ^^^^^^
+  File "W:\DataAnnotation\Projects\Achilles\A-35747_02_LLM\.venv\Lib\site-packages\pydantic\main.py", line 214, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Agent
+backstory
+  Field required [type=missing, input_value={'name': 'TaskPlanner', '...lama(), 'verbose': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.10/v/missing
+
+
+    ```
+    pydantic_core._pydantic_core.ValidationError: 1 validation error for Agent
+    backstory
+    Field required [type=missing, input_value={'name': 'TaskPlanner', '...lama(), 'verbose': True}, input_type=dict]
+    ```
