@@ -6,7 +6,7 @@ from pydantic import Field, BaseModel
 from crewai import Agent, Crew, Task, Process, LLM
 # from langchain_community.llms import ollama  # Assuming Langchain integration for Ollama
 from langchain_ollama import OllamaLLM
-from langchain.tools import tool, BaseTool
+from langchain.tools import tool, BaseTool, Tool
 import requests
 from bs4 import BeautifulSoup
 
@@ -88,10 +88,21 @@ class LocalLLMAgent:
 
     def create_web_researcher_agent(self) -> Agent:
 
-        search_tool = SearxngTools(searxng_api_url=self.searxng_api_url)  # Pass URL during instantiation
-        scrape_tool = BrowserTools()  # No extra fields, can be instantiated directly
+        search_tool_inst = SearxngTools(searxng_api_url=self.searxng_api_url)  # Pass URL during instantiation
+        scrape_tool_inst = BrowserTools()  # No extra fields, can be instantiated directly
 
-        print(f"****************** The URL is {search_tool.searxng_api_url}", file=sys.stderr)
+        search_tool = Tool (
+            name="SearchInternet",
+            description="Searches the internet using Searxng.",
+            func=search_tool_inst._run
+        )
+        scrape_tool = Tool (
+            name="ScrapeAndSummarize",
+            description="Scrapes a website and summarizes the content.",
+            func=scrape_tool_inst._run
+        )
+
+        # print(f"****************** The URL is {search_tool.searxng_api_url}", file=sys.stderr)
 
         return Agent(
             name="WebResearcher",
@@ -145,7 +156,7 @@ except Exception as e:
 ollama_base_url = "http://localhost:11434"  # Update with your Ollama URL
 searxng_api_url = "https://searx.org/api" # Public searxng instance; replace if you have your own
 
-# agent = LocalLLMAgent(ollama_base_url, searxng_api_url)
-# user_input = "What are the current top 3 news headlines about AI?"
-# result = agent.run(user_input)
-# print(result)
+agent = LocalLLMAgent(ollama_base_url, searxng_api_url)
+user_input = "What are the current top 3 news headlines about AI?"
+result = agent.run(user_input)
+print(result)

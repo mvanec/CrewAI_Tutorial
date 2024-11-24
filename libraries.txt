@@ -1,0 +1,7 @@
+pip install crewai
+pip install langchain
+pip install streamlit
+pip install unstructured
+pip install sentence_transformers
+pip install langchain-community
+pip install langchain-huggingface

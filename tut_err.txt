@@ -1,0 +1,79 @@
+/.venv/lib/python3.12/site-packages/langchain/llms/__init__.py:549: LangChainDeprecationWarning: Importing LLMs from langchain is deprecated. Importing from langchain will no longer be supported as of langchain==0.2.0. Please import from langchain-community instead:
+
+`from langchain_community.llms import Ollama`.
+
+To install langchain-community run `pip install -U langchain-community`.
+  warnings.warn(
+/tutorial.py:3: LangChainDeprecationWarning: Importing Chroma from langchain.vectorstores is deprecated. Please replace deprecated imports:
+
+>> from langchain.vectorstores import Chroma
+
+with new imports of:
+
+>> from langchain_community.vectorstores import Chroma
+You can use the langchain cli to **automatically** upgrade many imports. Please see documentation here <https://python.langchain.com/docs/versions/v0_2/>
+  from langchain.vectorstores import Chroma
+/tutorial.py:8: LangChainDeprecationWarning: Importing UnstructuredURLLoader from langchain.document_loaders is deprecated. Please replace deprecated imports:
+
+>> from langchain.document_loaders import UnstructuredURLLoader
+
+with new imports of:
+
+>> from langchain_community.document_loaders import UnstructuredURLLoader
+You can use the langchain cli to **automatically** upgrade many imports. Please see documentation here <https://python.langchain.com/docs/versions/v0_2/>
+  from langchain.document_loaders import UnstructuredURLLoader
+Error fetching or processing https://docs.crewai.com/how-to/Installing-CrewAI/, exception: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1000)>
+/tutorial.py:22: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-huggingface package and should be used instead. To use it run `pip install -U :class:`~langchain-huggingface` and import as `from :class:`~langchain_huggingface import HuggingFaceEmbeddings``.
+  embeddings = SentenceTransformerEmbeddings(model_name=model_name)
+Traceback (most recent call last):
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/models/CollectionCommon.py", line 90, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/models/CollectionCommon.py", line 389, in _validate_and_prepare_upsert_request
+    upsert_records = normalize_insert_record_set(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/types.py", line 181, in normalize_insert_record_set
+    base_record_set = normalize_base_record_set(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/types.py", line 158, in normalize_base_record_set
+    embeddings=normalize_embeddings(embeddings),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/types.py", line 61, in normalize_embeddings
+    if isinstance(target[0], (int, float)) and not isinstance(target[0], bool):
+                  ~~~~~~^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tutorial.py", line 25, in <module>
+    db = Chroma.from_documents(texts, embeddings, persist_directory="./chroma_db")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/langchain_community/vectorstores/chroma.py", line 887, in from_documents
+    return cls.from_texts(
+           ^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/langchain_community/vectorstores/chroma.py", line 843, in from_texts
+    chroma_collection.add_texts(
+  File "/.venv/lib/python3.12/site-packages/langchain_community/vectorstores/chroma.py", line 326, in add_texts
+    self._collection.upsert(
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/models/Collection.py", line 334, in upsert
+    upsert_request = self._validate_and_prepare_upsert_request(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/models/CollectionCommon.py", line 93, in wrapper
+    raise type(e)(msg).with_traceback(e.__traceback__)
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/models/CollectionCommon.py", line 90, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/models/CollectionCommon.py", line 389, in _validate_and_prepare_upsert_request
+    upsert_records = normalize_insert_record_set(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/types.py", line 181, in normalize_insert_record_set
+    base_record_set = normalize_base_record_set(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/types.py", line 158, in normalize_base_record_set
+    embeddings=normalize_embeddings(embeddings),
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.venv/lib/python3.12/site-packages/chromadb/api/types.py", line 61, in normalize_embeddings
+    if isinstance(target[0], (int, float)) and not isinstance(target[0], bool):
+                  ~~~~~~^^^
+IndexError: list index out of range in upsert.
